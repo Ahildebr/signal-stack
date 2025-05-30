@@ -4,6 +4,9 @@ import PostsTable from "./PostsTable";
 import mockPosts from "../data/mockPosts";
 import OverviewCard from "./OverviewCard";
 import NewPostForm from "./NewPostForm";
+import VpnComparisonChart from "./vpmComparisonChart";
+import ViewsChart from "./ViewsChart";
+
 
 
 
@@ -38,7 +41,8 @@ function Dashboard() {
         <OverviewCard label="Shares" value={totals.shares.toLocaleString()} />
         <OverviewCard label="Follows" value={totals.followers.toLocaleString()} />
       </div>
-
+      <ViewsChart data={posts} />
+      <VpnComparisonChart posts={posts} />
       <PostsTable posts={posts} />
     </div>
   );
