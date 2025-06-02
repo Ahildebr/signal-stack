@@ -4,22 +4,26 @@ from datetime import datetime
 
 api = Blueprint('api', __name__)
 
-@api.route('/posts', methods=['POST'])
-def create_post():
-    #get JSON from SRC and use MMALLOW to validate
-    json_data = request.get_json()
-    post_schema = TikTokPostSchema()
-
-    try:
-        # This validates and creates the instance
-        new_post = post_schema.load(json_data)
+@api.route('/posts', methods=['GET', 'POST'])
+def posts():
+    if request.method == 'POST':
         
-        # Just add it directly to the session
-        db.session.add(new_post)
-        db.session.commit()
+        json_data = request.get_json()
+        post_schema = TikTokPostSchema()
 
-        # Return the created post as JSON
-        return jsonify(post_schema.dump(new_post)), 201
+        try:
+            new_post = post_schema.load(json_data)
+            db.session.add(new_post)
+            db.session.commit()
+            return jsonify(post_schema.dump(new_post)), 201
+        except Exception as e:
+            return jsonify({'error': str(e)}), 400
     
-    except Exception as e:
-        return jsonify({'error' : str(e)}), 400
+    elif request.method == 'GET':
+        
+        try:
+            posts = TikTokPost.query.all()
+            post_schema = TikTokPostSchema(many=True)
+            return jsonify(post_schema.dump(posts)), 200
+        except Exception as e:
+            return jsonify({'error': str(e)}), 400
