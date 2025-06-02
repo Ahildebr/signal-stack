@@ -20,9 +20,9 @@ class TikTokPost(db.Model):
     views = db.Column(db.Integer, nullable=False, default=0)
     likes = db.Column(db.Integer, nullable=False, default=0)
     shares = db.Column(db.Integer, nullable=False, default=0)
-    posted_at = db.Column(db.DateTime, nullable=False)
+    posted_at = db.Column(db.DateTime, nullable=True)
     used_vpn = db.Column(db.Boolean, nullable=False, default=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
 
 class UserSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
@@ -32,3 +32,5 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 class TikTokPostSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = TikTokPost
+        load_instance = True  # This helps with creating instances
+        include_fk = True     # This includes foreign key fields
