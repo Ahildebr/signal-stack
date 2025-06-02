@@ -7,8 +7,8 @@ ma = Marshmallow()
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.string(120), unique=True, nullable=False)
-    password_hash = db.Column(db.string(120), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(120), nullable=False)
 
     posts = db.relationship('TikTokPost', backref='user', lazy=True)
 
@@ -16,7 +16,7 @@ class User(db.Model):
 
 class TikTokPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
+    title = db.Column(db.String(200), nullable=False, default="Untitled Post")
     views = db.Column(db.Integer, nullable=False, default=0)
     likes = db.Column(db.Integer, nullable=False, default=0)
     shares = db.Column(db.Integer, nullable=False, default=0)
