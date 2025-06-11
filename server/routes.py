@@ -27,3 +27,25 @@ def posts():
             return jsonify(post_schema.dump(posts)), 200
         except Exception as e:
             return jsonify({'error': str(e)}), 400
+
+@api.route('/posts/<int:post_id>', methods=['GET', 'PATCH'])
+def get_post(post_id):
+   
+   post = TikTokPost.query.get_or_404(post_id)
+
+
+   if request.method == 'GET':
+    post_schema = TikTokPostSchema()
+    return jsonify(post_schema.dump(post)), 200
+   
+   elif request.method == 'PATCH':
+    json_data = request.get_json()
+    post_schema = TikTokPostSchema(partial=True)
+   
+   
+    try:
+        post = TikTokPost.query.get_or_404(post_id)
+        post_schema = TikTokPostSchema()
+        return jsonify(post_schema.dump(post)), 200
+    except Exception as error:
+        return jsonify({'error': str(error)}), 404
