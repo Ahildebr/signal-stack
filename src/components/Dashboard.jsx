@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import PostsTable from "./PostsTable";
-import mockPosts from "../data/mockPosts";
+//import mockPosts from "../data/mockPosts";
 import OverviewCard from "./OverviewCard";
 import NewPostForm from "./NewPostForm";
 import VpnComparisonChart from "./vpmComparisonChart";
@@ -12,7 +12,7 @@ import ViewsChart from "./ViewsChart";
 
 
 function Dashboard() {
-  const [posts, setPosts] = useState(mockPosts);
+  const [posts, setPosts] = useState([]);
 
   const totals = posts.reduce(
     (acc, post) => {
