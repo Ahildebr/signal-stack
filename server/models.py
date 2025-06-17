@@ -13,7 +13,6 @@ class User(db.Model):
     posts = db.relationship('TikTokPost', backref='user', lazy=True)
 
 
-
 class TikTokPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False, default="Untitled Post")
@@ -21,16 +20,21 @@ class TikTokPost(db.Model):
     likes = db.Column(db.Integer, nullable=False, default=0)
     shares = db.Column(db.Integer, nullable=False, default=0)
     posted_at = db.Column(db.DateTime, nullable=True)
-    used_vpn = db.Column(db.Boolean, nullable=False, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    
+    # COMMENTED OUT FOR FUTURE USE
+    # used_vpn = db.Column(db.Boolean, nullable=False, default=False)
+    # followers = db.Column(db.Integer, nullable=False, default=0)
+
 
 class UserSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = User
         exclude = ['password_hash']
 
+
 class TikTokPostSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = TikTokPost
-        load_instance = True  # This helps with creating instances
-        include_fk = True     # This includes foreign key fields
+        load_instance = True
+        include_fk = True
