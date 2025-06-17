@@ -8,7 +8,7 @@ function NewPostForm({ onAddPost }) {
     likes: "",
     shares: "",
     followers: "",
-    postedAt: "",
+    posted_at: "",
     vpn: "off",
   });
 
@@ -18,26 +18,39 @@ function NewPostForm({ onAddPost }) {
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
-    const newPost = {
-      ...formData,
-      id: Date.now(),
-      views: parseInt(formData.views),
-      likes: parseInt(formData.likes),
-      shares: parseInt(formData.shares),
-      followers: parseInt(formData.followers),
-    };
-    onAddPost(newPost);
-    setFormData({
-      title: "",
-      views: "",
-      likes: "",
-      shares: "",
-      followers: "",
-      postedAt: "",
-      vpn: "off",
-    });
-  }
+  e.preventDefault();
+
+  const newPostData = {
+    title: formData.title,
+    views: parseInt(formData.views),
+    likes: parseInt(formData.likes),
+    shares: parseInt(formData.shares),
+    posted_at: new Date(formData.posted_at).toISOString(),
+  };
+  console.log("POST BODY →", newPostData);
+  fetch("http://127.0.0.1:5000/api/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newPostData)
+  })
+    .then((r) => {
+      if (!r.ok) throw new Error("Failed to post");
+      return r.json();
+    })
+    .then((newPost) => {
+      onAddPost(newPost); // Add to frontend
+      setFormData({
+        title: "",
+        views: "",
+        likes: "",
+        shares: "",
+        posted_at: "",
+      });
+    })
+    .catch((err) => console.error("Error posting:", err));
+}
 
   return (
     <form onSubmit={handleSubmit} className="bg-gray-800 p-4 rounded-xl space-y-4">
@@ -48,7 +61,7 @@ function NewPostForm({ onAddPost }) {
         <input name="likes" placeholder="Likes" value={formData.likes} onChange={handleChange} type="number" className="p-2 rounded bg-gray-700 text-white" required />
         <input name="shares" placeholder="Shares" value={formData.shares} onChange={handleChange} type="number" className="p-2 rounded bg-gray-700 text-white" required />
         <input name="followers" placeholder="Follows" value={formData.followers} onChange={handleChange} type="number" className="p-2 rounded bg-gray-700 text-white" required />
-        <input name="postedAt" placeholder="Posted At" value={formData.postedAt} onChange={handleChange} type="datetime-local" className="p-2 rounded bg-gray-700 text-white" required />
+        <input name="posted_at" placeholder="Posted At" value={formData.posted_at} onChange={handleChange} type="datetime-local" className="p-2 rounded bg-gray-700 text-white" required />
         <select name="vpn" value={formData.vpn} onChange={handleChange} className="p-2 rounded bg-gray-700 text-white">
           <option value="off">VPN Off</option>
           <option value="on">VPN On</option>

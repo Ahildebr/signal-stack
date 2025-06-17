@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import PostsTable from "./PostsTable";
 //import mockPosts from "../data/mockPosts";
@@ -14,15 +14,24 @@ import ViewsChart from "./ViewsChart";
 function Dashboard() {
   const [posts, setPosts] = useState([]);
 
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/api/posts")
+    .then((response) => {
+      if (!response.ok) throw new Error("Failed to fetch")
+        return response.json()
+    })
+    .then((data) => setPosts(data))
+    .catch((error) => console.error("Error Loading Posts", error))
+  }, [])
+
   const totals = posts.reduce(
     (acc, post) => {
       acc.views += post.views;
       acc.likes += post.likes;
       acc.shares += post.shares;
-      acc.followers += post.followers;
       return acc;
     },
-    { views: 0, likes: 0, shares: 0, followers: 0 }
+    { views: 0, likes: 0, shares: 0 }
   );
 
   function handleAddPost(newPost) {
@@ -39,7 +48,6 @@ function Dashboard() {
         <OverviewCard label="Views" value={totals.views.toLocaleString()} />
         <OverviewCard label="Likes" value={totals.likes.toLocaleString()} />
         <OverviewCard label="Shares" value={totals.shares.toLocaleString()} />
-        <OverviewCard label="Follows" value={totals.followers.toLocaleString()} />
       </div>
       <ViewsChart data={posts} />
       <VpnComparisonChart posts={posts} />
