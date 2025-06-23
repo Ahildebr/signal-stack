@@ -9,7 +9,7 @@ function NewPostForm({ onAddPost }) {
     shares: "",
     followers: "",
     posted_at: "",
-    vpn: "off",
+    //vpn: "off",
   });
 
   function handleChange(e) {
@@ -60,12 +60,12 @@ function NewPostForm({ onAddPost }) {
         <input name="views" placeholder="Views" value={formData.views} onChange={handleChange} type="number" className="p-2 rounded bg-gray-700 text-white" required />
         <input name="likes" placeholder="Likes" value={formData.likes} onChange={handleChange} type="number" className="p-2 rounded bg-gray-700 text-white" required />
         <input name="shares" placeholder="Shares" value={formData.shares} onChange={handleChange} type="number" className="p-2 rounded bg-gray-700 text-white" required />
-        <input name="followers" placeholder="Follows" value={formData.followers} onChange={handleChange} type="number" className="p-2 rounded bg-gray-700 text-white" required />
+        {/* <input name="followers" placeholder="Follows" value={formData.followers} onChange={handleChange} type="number" className="p-2 rounded bg-gray-700 text-white" required /> */}
         <input name="posted_at" placeholder="Posted At" value={formData.posted_at} onChange={handleChange} type="datetime-local" className="p-2 rounded bg-gray-700 text-white" required />
-        <select name="vpn" value={formData.vpn} onChange={handleChange} className="p-2 rounded bg-gray-700 text-white">
+        {/* <select name="vpn" value={formData.vpn} onChange={handleChange} className="p-2 rounded bg-gray-700 text-white">
           <option value="off">VPN Off</option>
           <option value="on">VPN On</option>
-        </select>
+        </select> */}
       </div>
       <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Add Post</button>
     </form>

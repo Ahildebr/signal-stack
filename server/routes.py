@@ -9,6 +9,8 @@ api = Blueprint('api', __name__)
 def posts():
     if request.method == 'POST':
         json_data = request.get_json()
+        print("🧠 Received JSON from client:", json_data)  # 👈 Log what frontend sends
+
         post_schema = TikTokPostSchema()
 
         try:
@@ -17,6 +19,7 @@ def posts():
             db.session.commit()
             return jsonify(post_schema.dump(new_post)), 201
         except Exception as e:
+            print("🛑 Marshmallow Load Error:", e)  # 👈 Log schema error
             return jsonify({'error': str(e)}), 400
 
     elif request.method == 'GET':

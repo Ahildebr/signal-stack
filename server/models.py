@@ -20,7 +20,7 @@ class TikTokPost(db.Model):
     likes = db.Column(db.Integer, nullable=False, default=0)
     shares = db.Column(db.Integer, nullable=False, default=0)
     posted_at = db.Column(db.DateTime, nullable=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True, default=None)
     
     # COMMENTED OUT FOR FUTURE USE
     # used_vpn = db.Column(db.Boolean, nullable=False, default=False)
