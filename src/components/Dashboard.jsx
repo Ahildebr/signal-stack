@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import PostsTable from "./PostsTable";
-//import mockPosts from "../data/mockPosts";
+import SplitText from "/src/animations/SplitText.jsx";
 import OverviewCard from "./OverviewCard";
 import NewPostForm from "./NewPostForm";
 import ViewsChart from "./ViewsChart";
@@ -18,13 +18,13 @@ function Dashboard() {
 
   useEffect(() => {
     fetch("http://127.0.0.1:5000/api/posts")
-    .then((response) => {
-      if (!response.ok) throw new Error("Failed to fetch")
-        return response.json()
-    })
-    .then((data) => setPosts(data))
-    .catch((error) => console.error("Error Loading Posts", error))
-  }, [])
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to fetch");
+        return response.json();
+      })
+      .then((data) => setPosts(data))
+      .catch((error) => console.error("Error Loading Posts", error));
+  }, []);
 
   const totals = posts.reduce(
     (acc, post) => {
@@ -42,7 +42,15 @@ function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-white">📊 SignalStack Dashboard</h1>
+      <div className="text-center">
+        <SplitText
+          text="Trend Spotter"
+          className="text-4xl font-extrabold text-white mb-4"
+          splitType="chars"
+          textAlign="center"
+          delay={120}
+        />
+      </div>
 
       <NewPostForm onAddPost={handleAddPost} />
 
@@ -52,7 +60,7 @@ function Dashboard() {
         <OverviewCard label="Shares" value={totals.shares.toLocaleString()} />
       </div>
       <ViewsChart data={posts} />
-      <LikesVsSharesChart posts={posts}/>
+      <LikesVsSharesChart posts={posts} />
       <ViewsByDayChart posts={posts} />
       <ViewsLikesPerPostChart posts={posts} />
       <PostsTable posts={posts} />

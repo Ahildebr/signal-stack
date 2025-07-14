@@ -1,14 +1,19 @@
 import React from 'react'
+import SplitText from '../animations/SplitText';
 
-const OverviewCard = ({label, value}) => {
-    return (
-    <div>
-    <div className="bg-gray-800 p-4 rounded-xl shadow-md text-center">
-      <div className="text-gray-400 text-sm">{label}</div>
-      <div className="text-2xl font-semibold text-white">{value}</div>
+function OverviewCard({ label, value }) {
+  return (
+    <div className="bg-gray-800 p-4 rounded-xl text-center text-white shadow-md">
+      <SplitText
+        text={label}
+        className="text-sm uppercase font-semibold text-gray-400"
+        splitType="chars"
+        delay={80}
+        textAlign="center"
+      />
+      <p className="text-3xl font-bold">{value}</p>
     </div>
-    </div>
-  )
+  );
 }
 
-export default OverviewCard
+export default OverviewCard;
