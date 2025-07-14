@@ -10,9 +10,7 @@ function PostsTable({ posts }) {
             <th className="py-2 pr-4">Views</th>
             <th className="py-2 pr-4">Likes</th>
             <th className="py-2 pr-4">Shares</th>
-            <th className="py-2 pr-4">Follows</th>
             <th className="py-2 pr-4">Posted At</th>
-            <th className="py-2 pr-4">VPN</th>
           </tr>
         </thead>
         <tbody>
@@ -22,17 +20,7 @@ function PostsTable({ posts }) {
               <td className="py-2 pr-4">{post.views.toLocaleString()}</td>
               <td className="py-2 pr-4">{post.likes}</td>
               <td className="py-2 pr-4">{post.shares}</td>
-              <td className="py-2 pr-4">{post.followers}</td>
               <td className="py-2 pr-4">{post.posted_at}</td>
-              <td className="py-2 pr-4">
-                <span
-                  className={`px-2 py-1 rounded text-xs font-semibold ${
-                    post.vpn === 'on' ? 'bg-red-600' : 'bg-green-600'
-                  } text-white`}
-                >
-                  {post.vpn}
-                </span>
-              </td>
             </tr>
           ))}
         </tbody>

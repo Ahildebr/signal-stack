@@ -4,8 +4,10 @@ import PostsTable from "./PostsTable";
 //import mockPosts from "../data/mockPosts";
 import OverviewCard from "./OverviewCard";
 import NewPostForm from "./NewPostForm";
-import VpnComparisonChart from "./vpmComparisonChart";
 import ViewsChart from "./ViewsChart";
+import LikesVsSharesChart from "./LikesVsSharesChart";
+import ViewsByDayChart from "./ViewsByDayChart";
+import ViewsLikesPerPostChart from "./ViewsLikesPerPostChart";
 
 
 
@@ -44,12 +46,15 @@ function Dashboard() {
 
       <NewPostForm onAddPost={handleAddPost} />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <OverviewCard label="Views" value={totals.views.toLocaleString()} />
         <OverviewCard label="Likes" value={totals.likes.toLocaleString()} />
         <OverviewCard label="Shares" value={totals.shares.toLocaleString()} />
       </div>
       <ViewsChart data={posts} />
+      <LikesVsSharesChart posts={posts}/>
+      <ViewsByDayChart posts={posts} />
+      <ViewsLikesPerPostChart posts={posts} />
       <PostsTable posts={posts} />
     </div>
   );

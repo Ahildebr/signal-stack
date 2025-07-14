@@ -23,10 +23,6 @@ function NewPostForm({ onAddPost }) {
   const isoDate = new Date(localDateTime).toISOString();
   console.log("Formatted ISO datetime →", isoDate);
 
-
-
-
-
   const newPostData = {
     title: formData.title,
     views: parseInt(formData.views),
