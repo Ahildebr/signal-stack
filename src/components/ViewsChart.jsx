@@ -10,9 +10,9 @@ import {
 
 function ViewsChart({ data }) {
   const formattedData = [...data]
-    .sort((a, b) => new Date(a.postedAt) - new Date(b.postedAt))
+    .sort((a, b) => new Date(a.posted_at) - new Date(b.posted_at))
     .map((post) => ({
-      name: new Date(post.postedAt).toLocaleDateString('en-US', {
+      name: new Date(post.posted_at).toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
       }),

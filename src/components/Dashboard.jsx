@@ -50,7 +50,6 @@ function Dashboard() {
         <OverviewCard label="Shares" value={totals.shares.toLocaleString()} />
       </div>
       <ViewsChart data={posts} />
-      <VpnComparisonChart posts={posts} />
       <PostsTable posts={posts} />
     </div>
   );

@@ -21,8 +21,8 @@ def create_app():
     with app.app_context():
         db.create_all()
 
-    @app.route('/')
-    def index():
-        return {'message': 'Hello from clean Flask'}
+    # @app.route('/')
+    # def index():
+    #     return {'message': 'Hello from clean Flask'}
 
     return app

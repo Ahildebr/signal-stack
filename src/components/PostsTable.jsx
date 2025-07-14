@@ -23,7 +23,7 @@ function PostsTable({ posts }) {
               <td className="py-2 pr-4">{post.likes}</td>
               <td className="py-2 pr-4">{post.shares}</td>
               <td className="py-2 pr-4">{post.followers}</td>
-              <td className="py-2 pr-4">{post.postedAt}</td>
+              <td className="py-2 pr-4">{post.posted_at}</td>
               <td className="py-2 pr-4">
                 <span
                   className={`px-2 py-1 rounded text-xs font-semibold ${
