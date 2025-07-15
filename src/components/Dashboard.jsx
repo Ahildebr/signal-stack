@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PostsTable from "./PostsTable";
 import SplitText from "/src/animations/SplitText.jsx";
 import OverviewCard from "./OverviewCard";
@@ -8,10 +7,6 @@ import ViewsChart from "./ViewsChart";
 import LikesVsSharesChart from "./LikesVsSharesChart";
 import ViewsByDayChart from "./ViewsByDayChart";
 import ViewsLikesPerPostChart from "./ViewsLikesPerPostChart";
-
-
-
-
 
 function Dashboard() {
   const [posts, setPosts] = useState([]);
@@ -41,29 +36,66 @@ function Dashboard() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <SplitText
-          text="Trend Spotter"
-          className="text-4xl font-extrabold text-white mb-4"
-          splitType="chars"
-          textAlign="center"
-          delay={120}
-        />
-      </div>
+    <div
+  className="min-h-screen bg-cover bg-center text-white p-4"
+  style={{ backgroundImage: "url('/Dashboard-background.jpg')" }}
+>
+      <div className="max-w-7xl mx-auto space-y-4">
+        {/* Header */}
+        <div className="text-center">
+          <SplitText
+            text="Trend Spotter"
+            className="text-6xl font-extrabold text-white mb-2"
+            splitType="chars"
+            textAlign="center"
+            delay={120}
+          />
+        </div>
 
-      <NewPostForm onAddPost={handleAddPost} />
+        {/* Grid layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 h-[calc(100vh-120px)] overflow-auto">
+          
+          
+          {/* Overview Cards */}
+          <div className= "bg-gradient-to-tr from-clear to-pink-500 rounded-xl shadow p-4 col-span-1">
+            <OverviewCard label="Likes" value={totals.likes.toLocaleString()} />
+          </div>
+          <div className= "bg-gradient-to-tr from-clear to-pink-500 rounded-xl shadow p-4 col-span-1">
+            <OverviewCard label="Views" value={totals.views.toLocaleString()} />
+          </div>
+          <div className= "bg-gradient-to-tr from-clear to-pink-500 rounded-xl shadow p-4 col-span-1">
+            <OverviewCard label="Shares" value={totals.shares.toLocaleString()} />
+          </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <OverviewCard label="Views" value={totals.views.toLocaleString()} />
-        <OverviewCard label="Likes" value={totals.likes.toLocaleString()} />
-        <OverviewCard label="Shares" value={totals.shares.toLocaleString()} />
+          
+          
+          {/* Views Chart (featured) */}
+          <div className="bg-gradient-to-bl from-clear to-cyan-500 rounded-xl shadow p-4 col-span-1 sm:col-span-2 lg:col-span-3 row-span-2">
+            <ViewsChart data={posts} />
+          </div>
+
+          {/* New Post Form (featured) */}
+          <div className="bg-gradient-to-br from-clear to-cyan-500 rounded-xl shadow p-4 col-span-1 sm:col-span-2 lg:col-span-3 row-span-1">
+            <NewPostForm onAddPost={handleAddPost} />
+          </div>
+
+          {/* Other Charts */}
+          <div className="bg-gradient-to-bl from-cyan-500 to-clear rounded-xl shadow p-4 col-span-1 sm:col-span-2 lg:col-span-2">
+            <LikesVsSharesChart posts={posts} />
+          </div>
+          <div className="bg-gradient-to-br from-pink-500 to-clear rounded-xl shadow p-4 col-span-1 sm:col-span-2 lg:col-span-4">
+            <ViewsByDayChart posts={posts} />
+          </div>
+          <div className="bg-gradient-to-r from-pink-500 to-cyan-500 rounded-xl shadow p-4 col-span-1 sm:col-span-2 lg:col-span-6">
+            <ViewsLikesPerPostChart posts={posts} />
+          </div>
+
+          {/* Posts Table (full width) */}
+          <div className="bg-gradient-to-r from-cyan-500 via-cyan-500 to-pink-500 rounded-xl shadow p-4 col-span-1 sm:col-span-2 lg:col-span-6">
+            <PostsTable posts={posts} />
+          </div>
+        </div>
       </div>
-      <ViewsChart data={posts} />
-      <LikesVsSharesChart posts={posts} />
-      <ViewsByDayChart posts={posts} />
-      <ViewsLikesPerPostChart posts={posts} />
-      <PostsTable posts={posts} />
     </div>
   );
 }

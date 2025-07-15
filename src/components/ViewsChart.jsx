@@ -4,6 +4,9 @@ import {
 } from "recharts";
 import moment from "moment";
 
+
+
+
 function ViewsChart({ data }) {
   // Convert post data into date → views mapping
   const chartData = data.map(post => ({
@@ -12,11 +15,11 @@ function ViewsChart({ data }) {
   })).sort((a, b) => new Date(a.date) - new Date(b.date)); // optional: sort by date
 
   return (
-    <div className="bg-gray-800 p-4 rounded-xl shadow-md">
-      <h2 className="text-white text-lg font-bold mb-2">Views Over Time</h2>
-      <ResponsiveContainer width="100%" height={300}>
+    <div className="bg-gray-700 p-4 rounded-xl shadow-md">
+      <h2 className="text-white text-lg font-bold mb-2">Total Views</h2>
+      <ResponsiveContainer width="100%" height={350}>
         <LineChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#4B5563" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#faf7f7" />
           <XAxis dataKey="date" stroke="#E5E7EB" />
           <YAxis stroke="#E5E7EB" />
           <Tooltip

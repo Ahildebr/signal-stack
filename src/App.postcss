@@ -1,0 +1,21 @@
+/* App.css */
+
+body {
+  @apply bg-white text-zinc-950 font-sans;
+}
+
+.title {
+  @apply text-5xl font-extrabold text-center mb-6;
+  background: linear-gradient(to right, #ff00cc, #ff66cc, #9966ff, #3399ff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dashboard-card {
+  @apply p-6 rounded-xl shadow-xl text-center border border-zinc-200;
+  transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+  @apply shadow-2xl scale-[1.02] border-blue-400;
+}

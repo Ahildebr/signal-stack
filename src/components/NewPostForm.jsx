@@ -56,16 +56,16 @@ function NewPostForm({ onAddPost }) {
 }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-gray-800 p-4 rounded-xl space-y-4">
+    <form onSubmit={handleSubmit} className="bg-gray-700 p-4 rounded-xl space-y-4">
       <h2 className="text-xl font-bold text-white">Add New Post</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <input name="title" placeholder="Title" value={formData.title} onChange={handleChange} className="p-2 rounded bg-gray-700 text-white" required />
-        <input name="views" placeholder="Views" value={formData.views} onChange={handleChange} type="number" className="p-2 rounded bg-gray-700 text-white" required />
-        <input name="likes" placeholder="Likes" value={formData.likes} onChange={handleChange} type="number" className="p-2 rounded bg-gray-700 text-white" required />
-        <input name="shares" placeholder="Shares" value={formData.shares} onChange={handleChange} type="number" className="p-2 rounded bg-gray-700 text-white" required />
-        <input name="posted_at" placeholder="Posted At" value={formData.posted_at} onChange={handleChange} type="datetime-local" className="p-2 rounded bg-gray-700 text-white" required />
+        <input name="title" placeholder="Title" value={formData.title} onChange={handleChange} className="p-2 rounded bg-gray-800 text-white" required />
+        <input name="views" placeholder="Views" value={formData.views} onChange={handleChange} type="number" className="p-2 rounded bg-gray-800 text-white" required />
+        <input name="likes" placeholder="Likes" value={formData.likes} onChange={handleChange} type="number" className="p-2 rounded bg-gray-800 text-white" required />
+        <input name="shares" placeholder="Shares" value={formData.shares} onChange={handleChange} type="number" className="p-2 rounded bg-gray-800 text-white" required />
+        <input name="posted_at" placeholder="Posted At" value={formData.posted_at} onChange={handleChange} type="datetime-local" className="p-2 rounded bg-gray-800 text-white" required />
       </div>
-      <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Add Post</button>
+      <button type="submit" className="px-4 py-2 bg-gradient-to-tr from-cyan-500 to-pink-500 text-white rounded">Add Post</button>
     </form>
   );
 }

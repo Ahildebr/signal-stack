@@ -2,7 +2,7 @@ import React from "react";
 
 function PostsTable({ posts }) {
   return (
-    <div className="bg-gray-800 p-4 rounded-xl shadow-inner overflow-x-auto">
+    <div className="bg-gray-700 p-4 rounded-xl shadow-inner overflow-x-auto">
       <table className="min-w-full text-left">
         <thead>
           <tr className="text-sm uppercase text-gray-400 border-b border-gray-700">

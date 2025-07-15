@@ -3,7 +3,7 @@ import SplitText from '../animations/SplitText';
 
 function OverviewCard({ label, value }) {
   return (
-    <div className="bg-gray-800 p-4 rounded-xl text-center text-white shadow-md">
+    <div className="bg-gray-700 p-4 rounded-xl text-center text-white shadow-md">
       <SplitText
         text={label}
         className="text-sm uppercase font-semibold text-gray-400"
