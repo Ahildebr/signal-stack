@@ -1,6 +1,15 @@
 import React from "react";
 import { useState } from "react";
 
+
+
+
+
+
+
+const BASE_URL = import.meta.env.VITE_API_BASE
+
+
 function NewPostForm({ onAddPost }) {
   const [formData, setFormData] = useState({
     title: "",
@@ -31,7 +40,7 @@ function NewPostForm({ onAddPost }) {
     posted_at: isoDate,
   };
   console.log("POST BODY →", newPostData);
-  fetch("http://127.0.0.1:5000/api/posts", {
+  fetch(`${BASE_URL}/api/posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

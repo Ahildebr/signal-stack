@@ -8,11 +8,17 @@ import LikesVsSharesChart from "./LikesVsSharesChart";
 import ViewsByDayChart from "./ViewsByDayChart";
 import ViewsLikesPerPostChart from "./ViewsLikesPerPostChart";
 
+
+
+const BASE_URL = import.meta.env.VITE_API_BASE;
+
+
+
 function Dashboard() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/posts")
+    fetch(`${BASE_URL}/api/posts`)
       .then((response) => {
         if (!response.ok) throw new Error("Failed to fetch");
         return response.json();
